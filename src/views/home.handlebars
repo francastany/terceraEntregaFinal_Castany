@@ -1,0 +1,59 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+        <div class="container-fluid d-flex justify-content-around align-center">
+            <img src={{user.avatar}} height="50" style="border-radius:50%; margin-right: .5rem" alt="profileFoto">
+            <a class="navbar-brand" href="/api/products">
+                <img src="https://res.cloudinary.com/francocastany/image/upload/v1677616392/REKITS/svgviewer-png-output_f9ognm.png" alt="logo" height="80px">
+            </a>
+            <a href="/logout" class="btn btn-sm btn-outline-dark">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="26" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg>
+            </a>
+        </div>
+    </nav>
+</header>
+
+<h1 class="m-4 text-center">HOME - PRODUCTS</h1>
+
+<section>
+    {{#if products.length}}
+    <h2 class="px-4">Products</h2>
+    <div class="m-4 d-flex flex-wrap">
+        {{#each products}}
+        <div class="card m-2" style="width:18rem;  padding: .4em .4em 0 .4em; box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px, rgba(0, 0, 0, 0.2) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px 0px inset;">
+            <img src={{this.img}} class="card-img-top" alt="product_img" style="width: 100%; height: 60%;">
+            <div class="card-body">
+                <h5 class="card-title">{{this.title}}</h5>
+                <h5 class="card-subtitle my-3">$ {{this.price}}</h5>
+                <button class="btn btn-outline-dark w-100" id='addToCartBtn{{@index}}'>ADD TO CART</button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+        <p class="alert alert-secondary w-50 mx-auto rounded-3">NO PRODUCTS FOUND</p>
+    {{/if}}
+</section>
+
+    <section class="w-50 m-5 rounded shadow border border-secondary">
+        <h4 class="p-3">YOUR CART:</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody id="tableOrder">
+                
+            </tbody>
+        </table>
+        <h4>TOTAL: <span id="total"></span></h4>
+        <button class="btn btn-dark m-3" id="finalizePurchase">CONFIRM YOUR ORDER</button>
+    </section>
+
+<script src="/js/home.js"></script>
