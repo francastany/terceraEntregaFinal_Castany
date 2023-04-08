@@ -1,15 +1,9 @@
 import { Router } from 'express';
-import jwt from 'jsonwebtoken';
-import config from '../config/config.js';
-
+import viewsController from '../controllers/views.controller.js';
 const router = Router();
 
-router.get('/register', (req, res) => {
-    res.render('register');
-});
-router.get('/', (req, res) => {
-    const token = req.cookies[config.jwt.cookie];
-    token ? res.render('products') : res.render('login');
-});
+router.get('/register', viewsController.register);
+router.get('/', viewsController.login);
+router.get('/logout', viewsController.logout);
 
 export default router;

@@ -9,5 +9,9 @@ export default {
     mailer: {
         GMAIL_USER: process.env.GMAIL_USER,
         GMAIL_PWD: process.env.GMAIL_PWD
+    },
+    app: {
+        ADMIN_USER: process.env.SUPERADMIN_USER,
+        ADMIN_PASSWORD: process.env.SUPERADMIN_PWD
     }
 }
